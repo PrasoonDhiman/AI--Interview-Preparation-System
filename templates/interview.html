@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Interview</title>
+    
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+</head>
+
+<body>
+
+    <h1>AI Mock Interview</h1>
+
+    <h3>
+        Question {{ question_number }} / {{ total_questions }}
+    </h3>
+
+    <hr>
+
+    <h2>
+        {{ question }}
+    </h2>
+
+    <button type="button" id="startBtn">
+        Start Recording
+    </button>
+
+    <button type="button" id="stopBtn" class="stop-recording" disabled>
+    Stop Recording
+    </button>
+    <br><br>
+
+    <button type="button" id="uploadBtn" disabled>
+        Convert Speech to Text
+    </button>
+
+    <br><br>
+
+    <h3>Transcript</h3>
+
+    <p id="transcriptText">
+        Your transcript will appear here.
+    </p>
+
+    <form action="/submit" method="POST">
+
+        <!-- Transcript -->
+        <input type="hidden"
+               name="answer"
+               id="answer"
+               required>
+
+        <!-- Recording Duration -->
+        <input type="hidden"
+               name="duration"
+               id="duration">
+
+        <button type="submit">
+            Submit Answer
+        </button>
+
+    </form>
+
+    <script>
+
+        let mediaRecorder;
+        let audioChunks = [];
+
+        let startTime;
+        let endTime;
+
+        const startBtn = document.getElementById("startBtn");
+        const stopBtn = document.getElementById("stopBtn");
+        const uploadBtn = document.getElementById("uploadBtn");
+
+
+        // Start Recording
+        startBtn.onclick = async () => {
+
+            const stream = await navigator.mediaDevices.getUserMedia({
+                audio: true
+            });
+
+            mediaRecorder = new MediaRecorder(stream);
+
+            audioChunks = [];
+
+            mediaRecorder.ondataavailable = (event) => {
+                audioChunks.push(event.data);
+            };
+
+            startTime = Date.now();
+
+            mediaRecorder.start();
+
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+        };
+
+
+        // Stop Recording
+        stopBtn.onclick = () => {
+
+            mediaRecorder.stop();
+
+            endTime = Date.now();
+
+            let duration = (endTime - startTime) / 1000;
+
+            document.getElementById("duration").value = duration;
+
+            mediaRecorder.onstop = () => {
+                uploadBtn.disabled = false;
+            };
+
+            stopBtn.disabled = true;
+        };
+
+
+        // Upload Audio and Get Transcript
+        uploadBtn.onclick = async () => {
+
+            const audioBlob = new Blob(audioChunks);
+
+            const formData = new FormData();
+
+            formData.append(
+                "audio",
+                audioBlob,
+                "answer.webm"
+            );
+
+            const response = await fetch("/upload_audio", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+
+            document.getElementById("transcriptText").innerText =
+                data.text;
+
+            document.getElementById("answer").value =
+                data.text;
+
+            uploadBtn.disabled = true;
+        };
+
+    </script>
+
+</body>
+
+</html>

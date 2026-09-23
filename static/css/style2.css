@@ -1,0 +1,99 @@
+/* Premium AI Interview Platform CSS */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,"Segoe UI",Arial,sans-serif}
+:root{
+--bg:#09090b;--card:rgba(255,255,255,.06);--border:rgba(255,255,255,.08);
+--text:#fff;--muted:#c9c9d1;--primary:#2563eb;--primary2:#4f46e5;
+}
+body{
+min-height:100vh;color:var(--text);overflow-x:hidden;
+background:
+radial-gradient(circle at top left,#2563eb33,transparent 35%),
+radial-gradient(circle at bottom right,#ec489933,transparent 35%),
+linear-gradient(135deg,#050505,#0b1120,#111827);
+}
+body:before{
+content:"";position:fixed;inset:0;z-index:-2;
+background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+background-size:42px 42px;
+mask-image:radial-gradient(circle,black 30%,transparent 85%);
+animation:grid 20s linear infinite;
+}
+body:after{
+content:"";position:fixed;width:700px;height:700px;right:-180px;top:-180px;
+background:radial-gradient(circle,#6366f166,transparent 70%);
+filter:blur(80px);z-index:-1;animation:float 10s ease-in-out infinite alternate;
+}
+@keyframes grid{to{transform:translateY(42px)}}
+@keyframes float{to{transform:translate(-80px,90px) scale(1.15)}}
+.container{width:min(1100px,92%);margin:auto;padding:60px 20px}
+.card{
+background:var(--card);border:1px solid var(--border);backdrop-filter:blur(20px);
+border-radius:24px;padding:40px;
+box-shadow:0 25px 60px rgba(0,0,0,.45),inset 0 1px rgba(255,255,255,.08);
+transition:.35s}
+.card:hover{transform:translateY(-6px)}
+h1{font-size:56px;font-weight:800;text-align:center;letter-spacing:-2px;
+background:linear-gradient(90deg,#fff,#b8c3ff);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px}
+h2{font-size:30px;margin-bottom:18px}
+h3{color:#c3c7d6}
+p,pre{color:var(--muted);line-height:1.7}
+.question,.section{
+background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+border:1px solid var(--border);border-radius:18px;padding:28px;margin:24px 0;position:relative;overflow:hidden}
+.question:before{
+content:"";position:absolute;inset:0;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.08),transparent);
+transform:translateX(-100%);animation:shine 5s infinite}
+@keyframes shine{to{transform:translateX(100%)}}
+button{
+background:linear-gradient(135deg,var(--primary),var(--primary2));
+color:#fff;border:none;border-radius:14px;padding:14px 30px;font-weight:700;cursor:pointer;
+transition:.3s;box-shadow:0 12px 28px rgba(37,99,235,.35)}
+button:hover{transform:translateY(-3px) scale(1.02)}
+select,textarea,input{
+width:100%;background:#111827;color:#fff;border:1px solid #334155;
+padding:14px;border-radius:12px;margin:12px 0;font-size:16px;transition:.3s}
+select:focus,textarea:focus,input:focus{
+outline:none;border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,.15)}
+a{color:#8ab4ff;text-decoration:none}
+a:hover{text-decoration:underline}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-thumb{background:#3b82f6;border-radius:8px}
+@media(max-width:768px){
+h1{font-size:40px}.card{padding:24px}.container{padding:30px 16px}
+button{width:100%}
+}
+/* Stop Recording Button */
+.stop-recording {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 14px 30px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.35);
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.stop-recording:hover:not(:disabled) {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(220, 38, 38, 0.5);
+}
+
+/* Click */
+.stop-recording:active:not(:disabled) {
+    transform: scale(0.96);
+}
+
+/* Disabled */
+.stop-recording:disabled {
+    background: #3f1d1d;
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
+}

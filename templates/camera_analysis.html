@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Camera Analysis</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+
+            font-family: Arial, sans-serif;
+
+            background: #111;
+            color: white;
+
+            text-align: center;
+        }
+
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+
+        /* -----------------------------------------
+           CAMERA CONTAINER
+        ----------------------------------------- */
+
+        .camera-container {
+
+            position: relative;
+
+            width: 640px;
+            height: 480px;
+
+            margin: 0 auto;
+
+            background: black;
+
+            overflow: hidden;
+
+            border-radius: 10px;
+
+        }
+
+
+        /* -----------------------------------------
+           VIDEO
+        ----------------------------------------- */
+
+        #webcam {
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 640px;
+            height: 480px;
+
+            object-fit: cover;
+
+            transform: scaleX(-1);
+
+            background: black;
+
+        }
+
+
+        /* -----------------------------------------
+           LANDMARK CANVAS
+        ----------------------------------------- */
+
+        #landmarkCanvas {
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 640px;
+            height: 480px;
+
+            pointer-events: none;
+
+            transform: scaleX(-1);
+
+        }
+
+
+        /* -----------------------------------------
+           STATUS
+        ----------------------------------------- */
+
+        .status-container {
+
+            margin-top: 20px;
+
+        }
+
+
+        .status {
+
+            margin: 8px;
+
+            font-size: 18px;
+
+        }
+
+
+        #cameraStatus {
+
+            color: #00ff88;
+
+        }
+
+
+        #faceStatus {
+
+            color: #00d9ff;
+
+        }
+
+
+        /* -----------------------------------------
+           BUTTON
+        ----------------------------------------- */
+
+        button {
+
+            margin-top: 20px;
+
+            padding: 12px 25px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #333;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+
+        button:hover {
+
+            background: #444;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <h1>Camera Analysis</h1>
+
+
+    <!-- =========================================
+         CAMERA
+    ========================================== -->
+
+    <div class="camera-container">
+
+        <video
+            id="webcam"
+            autoplay
+            muted
+            playsinline>
+        </video>
+
+
+        <canvas
+            id="landmarkCanvas">
+        </canvas>
+
+    </div>
+
+
+    <!-- =========================================
+         STATUS
+    ========================================== -->
+
+    <div class="status-container">
+
+        <div
+            id="cameraStatus"
+            class="status">
+
+            Starting camera...
+
+        </div>
+
+
+        <div
+            id="faceStatus"
+            class="status">
+
+            Waiting for face...
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         STOP BUTTON
+    ========================================== -->
+
+    <button
+        id="stopCamera">
+
+        Stop Camera
+
+    </button>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script
+        type="module"
+        src="{{ url_for('static', filename='js/camera.js') }}">
+    </script>
+
+
+</body>
+
+</html>

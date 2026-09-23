@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Role</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+</head>
+
+
+<body>
+
+<h1>Select Your Interview</h1>
+
+<form action="/interview" method="POST">
+
+    <label>Role</label>
+
+    <select name="role">
+
+        <option>Software Developer</option>
+        <option>Frontend Developer</option>
+        <option>Backend Developer</option>
+        <option>Full Stack Developer</option>
+        <option>Machine Learning Engineer</option>
+        <option>Data Analyst</option>
+
+    </select>
+
+    <br><br>
+
+    <label>Difficulty</label>
+
+    <select name="difficulty">
+
+        <option>Easy</option>
+        <option>Medium</option>
+        <option>Hard</option>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+
+        Start Interview
+
+    </button>
+
+</form>
+
+</body>
+</html>

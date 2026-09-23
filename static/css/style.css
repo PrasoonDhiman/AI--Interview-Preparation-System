@@ -1,0 +1,425 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter","Segoe UI",Arial,sans-serif;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    background:#0b0b0b;
+
+    color:#ffffff;
+
+    overflow-x:hidden;
+
+}
+
+
+/* Animated background */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #1f2937,
+        #111827
+    );
+
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    top:-200px;
+
+    left:-150px;
+
+    opacity:.7;
+
+    animation:move 10s infinite alternate;
+
+    z-index:-1;
+
+}
+
+
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:400px;
+
+    height:400px;
+
+    background:#cf87ab;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    bottom:-150px;
+
+    right:-100px;
+
+    opacity:.4;
+
+    animation:move2 12s infinite alternate;
+
+    z-index:-1;
+
+}
+
+
+
+@keyframes move{
+
+    from{
+
+        transform:translate(0,0);
+
+    }
+
+    to{
+
+        transform:translate(120px,80px);
+
+    }
+
+}
+
+
+@keyframes move2{
+
+    from{
+
+        transform:translate(0,0);
+
+    }
+
+    to{
+
+        transform:translate(-100px,-80px);
+
+    }
+
+}
+
+
+
+
+.container{
+
+    width:90%;
+
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:60px 20px;
+
+}
+
+
+
+
+
+/* Main Card */
+
+.card{
+
+
+    background:
+
+    rgba(255,255,255,0.05);
+
+
+    border:
+
+    1px solid rgba(255,255,255,0.1);
+
+
+    backdrop-filter:blur(15px);
+
+
+    border-radius:20px;
+
+
+    padding:40px;
+
+
+    box-shadow:
+
+    0 20px 40px rgba(0,0,0,.5);
+
+
+    animation:appear .8s ease;
+
+}
+
+
+
+@keyframes appear{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+
+
+h1{
+
+    font-size:48px;
+
+    font-weight:700;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+h2{
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+}
+
+
+h3{
+
+    color:#a1a1aa;
+
+}
+
+
+p{
+
+    color:#d4d4d8;
+
+    font-size:18px;
+
+    line-height:1.6;
+
+}
+
+
+
+
+
+/* Buttons */
+
+
+button{
+
+    background:#ffffff;
+
+    color:#000000;
+
+
+    border:none;
+
+
+    padding:14px 32px;
+
+
+    border-radius:12px;
+
+
+    font-size:16px;
+
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+button:hover{
+
+
+    background:#e5e5e5;
+
+
+    transform:
+
+    translateY(-3px);
+
+
+}
+
+
+
+
+
+/* Form elements */
+
+
+select,
+textarea{
+
+
+    width:100%;
+
+
+    background:#171717;
+
+
+    color:white;
+
+
+    border:
+
+    1px solid #333;
+
+
+    padding:15px;
+
+
+    border-radius:12px;
+
+
+    margin:12px 0;
+
+
+    font-size:16px;
+
+
+}
+
+
+
+select option{
+
+    color:black;
+
+}
+
+
+
+
+
+/* Question */
+
+
+.question{
+
+
+    background:#111111;
+
+
+    border:
+
+    1px solid #262626;
+
+
+    padding:30px;
+
+
+    border-radius:18px;
+
+
+    margin:25px 0;
+
+
+    font-size:22px;
+
+
+}
+
+
+
+
+/* Reports */
+
+
+.section{
+
+
+    background:#111111;
+
+
+    border:
+
+    1px solid #262626;
+
+
+    border-radius:18px;
+
+
+    padding:30px;
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+pre{
+
+
+    white-space:pre-wrap;
+
+
+    color:#d4d4d8;
+
+
+    line-height:1.8;
+
+
+    font-size:16px;
+
+
+}
+
+
+a{
+
+    text-decoration:none;
+
+}
